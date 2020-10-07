@@ -12,7 +12,6 @@ export class home extends Component {
         axios
             .get("/tuts")
             .then((res) => {
-                console.log(res.data);
                 this.setState({
                     tuts: res.data,
                 });
@@ -21,12 +20,12 @@ export class home extends Component {
     }
     render() {
         let recentTutsMarkup = this.state.tuts ? (
-            this.state.tuts.map((tut) => <Tut tut={tut} />)
+            this.state.tuts.map((tut) => <Tut key={tut.tutId} tut={tut} />)
         ) : (
             <p>Loading...</p>
         );
         return (
-            <Grid container spacing={16}>
+            <Grid container spacing={10}>
                 <Grid item sm={8} xs={12}>
                     {recentTutsMarkup}
                 </Grid>
