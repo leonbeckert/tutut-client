@@ -4,7 +4,7 @@ import Grid from "@material-ui/core/Grid";
 
 import Tut from "../components/Tut";
 
-export class home extends Component {
+class home extends Component {
     state = {
         tuts: null,
     };
