@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import withStyles from "@material-ui/core/styles/withStyles";
 import { Link } from "react-router-dom";
 import dayjs from "dayjs";
+import EditDetails from "./EditDetails";
 
 // MUI stuff
 import Button from "@material-ui/core/Button";
@@ -11,6 +12,7 @@ import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 import IconButton from "@material-ui/core/IconButton";
 import Tooltip from "@material-ui/core/Tooltip";
+import KeyboardReturn from "@material-ui/icons/KeyboardReturn";
 
 // Icons
 import LocationOn from "@material-ui/icons/LocationOn";
@@ -81,6 +83,9 @@ export class Profile extends Component {
         const fileInput = document.getElementById("imageInput");
         fileInput.click();
     };
+    handleLogout = () => {
+        this.props.logoutUser();
+    };
 
     render() {
         const {
@@ -100,7 +105,7 @@ export class Profile extends Component {
         } = this.props;
         let profileMarkup = !loading ? (
             authenticated ? (
-                <Paper class={classes.paper}>
+                <Paper className={classes.paper}>
                     <div className={classes.profile}>
                         <div className="image-wrapper">
                             <img
@@ -168,12 +173,18 @@ export class Profile extends Component {
                                 Joined {dayjs(createdAt).format("MMM YYYY")}
                             </span>
                         </div>
+                        <Tooltip title="Logout" placement="top">
+                            <IconButton onClick={this.handleLogout}>
+                                <KeyboardReturn color="primary" />
+                            </IconButton>
+                        </Tooltip>
+                        <EditDetails />
                     </div>
                 </Paper>
             ) : (
                 <Paper className={classes.paper}>
                     <Typography variant="body2" align="center">
-                        No profile found, please login again
+                        No profile found, please Log In or Sign Up.
                     </Typography>
                     <div className={classes.buttons}>
                         <Button
