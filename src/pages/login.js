@@ -142,11 +142,10 @@ const mapStateToProps = (state) => ({
     UI: state.UI,
 });
 
-const mapActionsToProps = {
-    loginUser,
-};
+// const mapActionsToProps = {
+//     loginUser,
+// };
 
-export default connect(
-    mapStateToProps,
-    mapActionsToProps
-)(withStyles(styles)(login));
+export default connect(mapStateToProps, { loginUser })(
+    withStyles(styles)(login)
+);
