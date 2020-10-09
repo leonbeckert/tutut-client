@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import withStyles from "@material-ui/core/styles/withStyles";
 import PropTypes from "prop-types";
 import AppIcon from "../images/icon.png";
-import axios from "axios";
 import { Link } from "react-router-dom";
 
 // MUI Stuff
@@ -134,8 +133,8 @@ class login extends Component {
 login.propTypes = {
     classes: PropTypes.object.isRequired,
     loginUser: PropTypes.func.isRequired,
-    user: PropTypes.func.isRequired,
-    UI: PropTypes.func.isRequired,
+    user: PropTypes.object.isRequired,
+    UI: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({

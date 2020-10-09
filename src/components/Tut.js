@@ -34,9 +34,9 @@ export class Tut extends Component {
                 createdAt,
                 userImage,
                 userHandle,
-                tutId,
+                /*tutId,
                 likeCount,
-                commentCount,
+                commentCount,*/
             },
         } = this.props;
         return (
