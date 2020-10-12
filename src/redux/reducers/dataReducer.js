@@ -5,6 +5,7 @@ import {
     LOADING_DATA,
     DELETE_TUT,
     POST_TUT,
+    SET_TUT,
 } from "../types";
 
 const initialState = {
@@ -24,6 +25,12 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 tuts: action.payload,
+                loading: false,
+            };
+        case SET_TUT:
+            return {
+                ...state,
+                tut: action.payload,
                 loading: false,
             };
         case LIKE_TUT:

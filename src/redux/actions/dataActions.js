@@ -8,6 +8,8 @@ import {
     CLEAR_ERRORS,
     POST_TUT,
     LOADING_UI,
+    SET_TUT,
+    STOP_LOADING_UI,
 } from "../types";
 import axios from "axios";
 
@@ -28,6 +30,21 @@ export const getTuts = () => (dispatch) => {
                 payload: err.response.data,
             });
         });
+};
+
+// Get Tut Details
+export const getTut = (tutId) => (dispatch) => {
+    dispatch({ type: LOADING_UI });
+    axios
+        .get(`/tut/${tutId}`)
+        .then((res) => {
+            dispatch({
+                type: SET_TUT,
+                payload: res.data,
+            });
+            dispatch({ type: STOP_LOADING_UI });
+        })
+        .catch((err) => console.log(err));
 };
 
 // Post a tut
@@ -84,4 +101,8 @@ export const deleteTut = (tutId) => (dispatch) => {
             dispatch({ type: DELETE_TUT, payload: tutId });
         })
         .catch((err) => console.log(err));
+};
+
+export const clearErrors = () => (dispatch) => {
+    dispatch({ type: CLEAR_ERRORS });
 };

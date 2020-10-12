@@ -10,12 +10,14 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import CircularProgress from "@material-ui/core/CircularProgress";
+
+// Icons
 import AddIcon from "@material-ui/icons/Add";
 import CloseIcon from "@material-ui/icons/Close";
 
 // Redux stuff
 import { connect } from "react-redux";
-import { postTut } from "../redux/actions/dataActions";
+import { postTut, clearErrors } from "../redux/actions/dataActions";
 
 const styles = (theme) => ({
     ...theme.spreadThis,
@@ -47,14 +49,14 @@ class PostTut extends Component {
             });
         }
         if (!nextProps.UI.errors && !nextProps.UI.loading) {
-            this.setState({ body: "" });
-            this.handleClose();
+            this.setState({ body: "", open: false, errors: {} });
         }
     }
     handleOpen = () => {
         this.setState({ open: true });
     };
     handleClose = () => {
+        this.props.clearErrors();
         this.setState({ open: false, errors: {} });
     };
     handleChange = (event) => {
@@ -129,6 +131,7 @@ class PostTut extends Component {
 
 PostTut.propTypes = {
     postTut: PropTypes.func.isRequired,
+    clearErrors: PropTypes.func.isRequired,
     UI: PropTypes.object.isRequired,
 };
 
@@ -136,6 +139,6 @@ const mapStateToProps = (state) => ({
     UI: state.UI,
 });
 
-export default connect(mapStateToProps, { postTut })(
+export default connect(mapStateToProps, { postTut, clearErrors })(
     withStyles(styles)(PostTut)
 );
