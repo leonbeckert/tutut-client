@@ -39,6 +39,9 @@ export default function (state = initialState, action) {
                 (tut) => tut.tutId === action.payload.tutId
             );
             state.tuts[unlikeIndex] = action.payload;
+            if (state.tut.tutId === action.payload.tutId) {
+                state.tut = action.payload;
+            }
             return {
                 ...state,
             };
