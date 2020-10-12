@@ -14,3 +14,4 @@ export const SET_TUT = "SET_TUT";
 export const LIKE_TUT = "LIKE_TUT";
 export const UNLIKE_TUT = "UNLIKE_TUT";
 export const DELETE_TUT = "DELETE_TUT";
+export const POST_TUT = "POST_TUT";

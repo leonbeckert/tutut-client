@@ -4,6 +4,10 @@ import {
     LIKE_TUT,
     UNLIKE_TUT,
     DELETE_TUT,
+    SET_ERRORS,
+    CLEAR_ERRORS,
+    POST_TUT,
+    LOADING_UI,
 } from "../types";
 import axios from "axios";
 
@@ -22,6 +26,26 @@ export const getTuts = () => (dispatch) => {
             dispatch({
                 type: SET_TUTS,
                 payload: [],
+            });
+        });
+};
+
+// Post a tut
+export const postTut = (newTut) => (dispatch) => {
+    dispatch({ type: LOADING_UI });
+    axios
+        .post("/tut", newTut)
+        .then((res) => {
+            dispatch({
+                type: POST_TUT,
+                payload: res.data,
+            });
+            dispatch({ type: CLEAR_ERRORS });
+        })
+        .catch((err) => {
+            dispatch({
+                type: SET_ERRORS,
+                payload: err.response.data,
             });
         });
 };

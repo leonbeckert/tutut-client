@@ -4,6 +4,7 @@ import {
     UNLIKE_TUT,
     LOADING_DATA,
     DELETE_TUT,
+    POST_TUT,
 } from "../types";
 
 const initialState = {
@@ -41,6 +42,11 @@ export default function (state = initialState, action) {
             state.tuts.splice(deleteIndex, 1);
             return {
                 ...state,
+            };
+        case POST_TUT:
+            return {
+                ...state,
+                tuts: [action.payload, ...state.tuts],
             };
         default:
             return state;
