@@ -3,6 +3,8 @@ import {
     SET_AUTHENTICATED,
     SET_UNAUTHENTICATED,
     LOADING_USER,
+    LIKE_TUT,
+    UNLIKE_TUT,
 } from "../types";
 
 const initialState = {
@@ -32,6 +34,24 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 loading: true,
+            };
+        case LIKE_TUT:
+            return {
+                ...state,
+                likes: [
+                    ...state.likes,
+                    {
+                        userHandle: state.credentials.handle,
+                        tutId: action.payload.tutId,
+                    },
+                ],
+            };
+        case UNLIKE_TUT:
+            return {
+                ...state,
+                likes: state.likes.filter(
+                    (like) => like.tutId !== action.payload.tutId
+                ),
             };
         default:
             return state;

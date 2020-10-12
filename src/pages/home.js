@@ -1,27 +1,21 @@
 import React, { Component } from "react";
-import axios from "axios";
 import Grid from "@material-ui/core/Grid";
+import PropTypes from "prop-types";
 
 import Tut from "../components/Tut";
 import Profile from "../components/Profile";
 
+import { connect } from "react-redux";
+import { getTuts } from "../redux/actions/dataActions";
+
 class home extends Component {
-    state = {
-        tuts: null,
-    };
     componentDidMount() {
-        axios
-            .get("/tuts")
-            .then((res) => {
-                this.setState({
-                    tuts: res.data,
-                });
-            })
-            .catch((err) => console.error(err));
+        this.props.getTuts();
     }
     render() {
-        let recentTutsMarkup = this.state.tuts ? (
-            this.state.tuts.map((tut) => <Tut key={tut.tutId} tut={tut} />)
+        const { tuts, loading } = this.props.data;
+        let recentTutsMarkup = !loading ? (
+            tuts.map((tut) => <Tut key={tut.tutId} tut={tut} />)
         ) : (
             <p>Loading...</p>
         );
@@ -38,4 +32,13 @@ class home extends Component {
     }
 }
 
-export default home;
+home.propTypes = {
+    getTuts: PropTypes.func.isRequired,
+    data: PropTypes.object.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+    data: state.data,
+});
+
+export default connect(mapStateToProps, { getTuts })(home);
