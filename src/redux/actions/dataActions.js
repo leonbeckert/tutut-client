@@ -24,8 +24,8 @@ export const getTuts = () => (dispatch) => {
         })
         .catch((err) => {
             dispatch({
-                type: SET_TUTS,
-                payload: [],
+                type: SET_ERRORS,
+                payload: err.response.data,
             });
         });
 };
