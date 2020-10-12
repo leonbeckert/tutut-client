@@ -13,7 +13,13 @@ import DeleteOutline from "@material-ui/icons/DeleteOutline";
 import { connect } from "react-redux";
 import { deleteTut } from "../redux/actions/dataActions";
 
-const styles = {};
+const styles = {
+    deleteButton: {
+        position: "absolute",
+        left: "90%",
+        top: "10%",
+    },
+};
 
 class DeleteTut extends Component {
     state = {
