@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import withStyles from "@material-ui/core/styles/withStyles";
 import MyButton from "../../util/MyButton";
 import LikeButton from "./LikeButton";
+import Comments from "./Comments";
 import dayjs from "dayjs";
 import { Link } from "react-router-dom";
 
@@ -24,10 +25,6 @@ import { getTut } from "../../redux/actions/dataActions";
 
 const styles = (theme) => ({
     ...theme.spreadThis,
-    invisibleSeparator: {
-        border: "none",
-        margin: 4,
-    },
     profileImage: {
         maxWidth: 200,
         height: 200,
@@ -77,6 +74,7 @@ class TutDialog extends Component {
                 commentCount,
                 userImage,
                 userHandle,
+                comments,
             },
             UI: { loading },
         } = this.props;
@@ -116,6 +114,7 @@ class TutDialog extends Component {
                     </MyButton>
                     <span>{commentCount} Comments</span>
                 </Grid>
+                <Comments comments={comments} />
             </Grid>
         );
         return (
