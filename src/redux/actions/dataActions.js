@@ -96,7 +96,6 @@ export const unlikeTut = (tutId) => (dispatch) => {
 
 // Submit a comment
 export const submitComment = (tutId, commentData) => (dispatch) => {
-    console.log("dataActions submitComment");
     axios
         .post(`/tut/${tutId}/comment`, commentData)
         .then((res) => {

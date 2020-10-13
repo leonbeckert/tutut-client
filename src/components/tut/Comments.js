@@ -31,7 +31,6 @@ class Comments extends Component {
                     return (
                         <Fragment key={createdAt}>
                             <Grid item sm={12}>
-                                <hr className={classes.visibleSeparator} />
                                 <Grid container>
                                     <Grid item sm={2}>
                                         <img

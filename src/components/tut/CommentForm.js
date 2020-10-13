@@ -35,7 +35,6 @@ export class CommentForm extends Component {
     };
     handleSubmit = (event) => {
         event.preventDefault();
-        console.log("submitting commment from CommentForm");
         this.props.submitComment(this.props.tutId, { body: this.state.body });
     };
     render() {

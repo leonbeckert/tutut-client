@@ -77,6 +77,7 @@ class TutDialog extends Component {
                 comments,
             },
             UI: { loading },
+            authenticated,
         } = this.props;
 
         const dialogMarkup = loading ? (
@@ -114,8 +115,11 @@ class TutDialog extends Component {
                     </MyButton>
                     <span>{commentCount} Comments</span>
                 </Grid>
-                <hr className={classes.visibleSeparator} />
+                {commentCount > 0 && (
+                    <hr className={classes.visibleSeparator} />
+                )}
                 <CommentForm tutId={tutId} />
+                {authenticated && <hr className={classes.visibleSeparator} />}
                 <Comments comments={comments} />
             </Grid>
         );
@@ -157,11 +161,13 @@ TutDialog.propTypes = {
     userHandle: PropTypes.string.isRequired,
     tut: PropTypes.object.isRequired,
     UI: PropTypes.object.isRequired,
+    authenticated: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state) => ({
     tut: state.data.tut,
     UI: state.UI,
+    authenticated: state.user.authenticated,
 });
 
 const mapActionsToProps = {
