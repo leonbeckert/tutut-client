@@ -55,6 +55,11 @@ class TutDialog extends Component {
     state = {
         open: false,
     };
+    componentDidMount() {
+        if (this.props.openDialog) {
+            this.handleOpen();
+        }
+    }
     handleOpen = () => {
         this.setState({ open: true });
         this.props.getTut(this.props.tutId);

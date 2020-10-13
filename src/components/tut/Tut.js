@@ -88,7 +88,11 @@ export class Tut extends Component {
                         <ChatIcon color="primary" />
                     </MyButton>
                     <span>{commentCount} Comments</span>
-                    <TutDialog tutId={tutId} userHandle={userHandle} />
+                    <TutDialog
+                        tutId={tutId}
+                        userHandle={userHandle}
+                        openDialog={this.props.openDialog}
+                    />
                 </CardContent>
             </Card>
         );
@@ -99,6 +103,7 @@ Tut.propTypes = {
     user: PropTypes.object.isRequired,
     tut: PropTypes.object.isRequired,
     classes: PropTypes.object.isRequired,
+    openDialog: PropTypes.bool,
 };
 
 const mapStateToProps = (state) => ({

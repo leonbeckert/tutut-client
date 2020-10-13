@@ -11,9 +11,15 @@ import { getUserData } from "../redux/actions/dataActions";
 export class user extends Component {
     state = {
         profile: null,
+        tutIdParam: null,
     };
     componentDidMount() {
-        const handle = this.props.match.params.handle;
+        const { handle, tutId } = this.props.match.params;
+
+        if (tutId) {
+            this.setState({ tutIdParam: tutId });
+        }
+
         this.props.getUserData(handle);
         axios
             .get(`/user/${handle}`)
@@ -26,13 +32,22 @@ export class user extends Component {
     }
     render() {
         const { tuts, loading } = this.props.data;
+        const { tutIdParam } = this.state;
 
         const tutsMarkup = loading ? (
             <p>Loading data...</p>
         ) : tuts === null ? (
             <p>No tuts from this user</p>
-        ) : (
+        ) : !tutIdParam ? (
             tuts.map((tut) => <Tut key={tut.tutId} tut={tut} />)
+        ) : (
+            tuts.map((tut) => {
+                if (tut.tutId !== tutIdParam) {
+                    return <Tut key={tut.tutId} tut={tut} />;
+                } else {
+                    return <Tut key={tut.tutId} tut={tut} openDialog />;
+                }
+            })
         );
 
         return (
