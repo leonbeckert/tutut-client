@@ -124,6 +124,24 @@ export const deleteTut = (tutId) => (dispatch) => {
         .catch((err) => console.log(err));
 };
 
+export const getUserData = (userHandle) => (dispatch) => {
+    dispatch({ type: LOADING_DATA });
+    axios
+        .get(`/user/${userHandle}`)
+        .then((res) => {
+            dispatch({
+                type: SET_TUTS,
+                payload: res.data.tuts,
+            });
+        })
+        .catch(() => {
+            dispatch({
+                type: SET_TUTS,
+                payload: null,
+            });
+        });
+};
+
 export const clearErrors = () => (dispatch) => {
     dispatch({ type: CLEAR_ERRORS });
 };

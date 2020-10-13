@@ -20,6 +20,8 @@ import themeFile from "./util/theme";
 import home from "./pages/home";
 import login from "./pages/login";
 import signup from "./pages/signup";
+import user from "./pages/user";
+
 import axios from "axios";
 
 const theme = createMuiTheme(themeFile);
@@ -56,6 +58,11 @@ class App extends Component {
                                     exact
                                     path="/signup"
                                     component={signup}
+                                />
+                                <Route
+                                    exact
+                                    path="/users/:handle"
+                                    component={user}
                                 />
                             </Switch>
                         </div>
