@@ -30,8 +30,8 @@ class Comments extends Component {
                     const { body, createdAt, userImage, userHandle } = comment;
                     return (
                         <Fragment key={createdAt}>
-                            <hr className={classes.visibleSeparator} />
                             <Grid item sm={12}>
+                                <hr className={classes.visibleSeparator} />
                                 <Grid container>
                                     <Grid item sm={2}>
                                         <img
@@ -48,7 +48,7 @@ class Comments extends Component {
                                                 to={`/users/${userHandle}`}
                                                 color="primary"
                                             >
-                                                {userHandle}
+                                                @{userHandle}
                                             </Typography>
                                             <Typography
                                                 variant="body2"

@@ -75,7 +75,7 @@ export class Tut extends Component {
                         to={`/users/${userHandle}`}
                         color="textPrimary"
                     >
-                        {userHandle}
+                        @{userHandle}
                     </Typography>
                     {deleteButton}
                     <Typography variant="body2" color="textSecondary">

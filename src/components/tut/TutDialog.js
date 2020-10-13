@@ -4,6 +4,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import MyButton from "../../util/MyButton";
 import LikeButton from "./LikeButton";
 import Comments from "./Comments";
+import CommentForm from "./CommentForm";
 import dayjs from "dayjs";
 import { Link } from "react-router-dom";
 
@@ -21,7 +22,7 @@ import ChatIcon from "@material-ui/icons/Chat";
 
 // Redux stuff
 import { connect } from "react-redux";
-import { getTut } from "../../redux/actions/dataActions";
+import { getTut, clearErrors } from "../../redux/actions/dataActions";
 
 const styles = (theme) => ({
     ...theme.spreadThis,
@@ -59,9 +60,8 @@ class TutDialog extends Component {
         this.props.getTut(this.props.tutId);
     };
     handleClose = () => {
-        console.log("TutDialog handleClose");
         this.setState({ open: false });
-        console.log(this.state.open);
+        this.props.clearErrors();
     };
     render() {
         const {
@@ -114,6 +114,8 @@ class TutDialog extends Component {
                     </MyButton>
                     <span>{commentCount} Comments</span>
                 </Grid>
+                <hr className={classes.visibleSeparator} />
+                <CommentForm tutId={tutId} />
                 <Comments comments={comments} />
             </Grid>
         );
@@ -149,6 +151,7 @@ class TutDialog extends Component {
 }
 
 TutDialog.propTypes = {
+    clearErrors: PropTypes.func.isRequired,
     getTut: PropTypes.func.isRequired,
     tutId: PropTypes.string.isRequired,
     userHandle: PropTypes.string.isRequired,
@@ -163,6 +166,7 @@ const mapStateToProps = (state) => ({
 
 const mapActionsToProps = {
     getTut,
+    clearErrors,
 };
 
 export default connect(

@@ -16,3 +16,4 @@ export const UNLIKE_TUT = "UNLIKE_TUT";
 export const DELETE_TUT = "DELETE_TUT";
 export const POST_TUT = "POST_TUT";
 export const STOP_LOADING_UI = "STOP_LOADING_UI";
+export const SUBMIT_COMMENT = "SUBMIT_COMMENT";

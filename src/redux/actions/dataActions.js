@@ -10,6 +10,7 @@ import {
     LOADING_UI,
     SET_TUT,
     STOP_LOADING_UI,
+    SUBMIT_COMMENT,
 } from "../types";
 import axios from "axios";
 
@@ -57,7 +58,7 @@ export const postTut = (newTut) => (dispatch) => {
                 type: POST_TUT,
                 payload: res.data,
             });
-            dispatch({ type: CLEAR_ERRORS });
+            dispatch(clearErrors());
         })
         .catch((err) => {
             dispatch({
@@ -91,6 +92,26 @@ export const unlikeTut = (tutId) => (dispatch) => {
             });
         })
         .catch((err) => console.log(err));
+};
+
+// Submit a comment
+export const submitComment = (tutId, commentData) => (dispatch) => {
+    console.log("dataActions submitComment");
+    axios
+        .post(`/tut/${tutId}/comment`, commentData)
+        .then((res) => {
+            dispatch({
+                type: SUBMIT_COMMENT,
+                payload: res.data,
+            });
+            dispatch(clearErrors());
+        })
+        .catch((err) => {
+            dispatch({
+                type: SET_ERRORS,
+                payload: err.response.data,
+            });
+        });
 };
 
 // Delete a tut

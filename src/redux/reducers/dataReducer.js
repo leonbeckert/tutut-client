@@ -6,6 +6,7 @@ import {
     DELETE_TUT,
     POST_TUT,
     SET_TUT,
+    SUBMIT_COMMENT,
 } from "../types";
 
 const initialState = {
@@ -57,6 +58,14 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 tuts: [action.payload, ...state.tuts],
+            };
+        case SUBMIT_COMMENT:
+            return {
+                ...state,
+                tut: {
+                    ...state.tut,
+                    comments: [action.payload, ...state.tut.comments],
+                },
             };
         default:
             return state;
