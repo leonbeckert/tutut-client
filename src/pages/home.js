@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import Grid from "@material-ui/core/Grid";
 import PropTypes from "prop-types";
 
-import Tut from "../components/Tut";
-import Profile from "../components/Profile";
+import Tut from "../components/tut/Tut";
+import Profile from "../components/profile/Profile";
 
 import { connect } from "react-redux";
 import { getTuts } from "../redux/actions/dataActions";
