@@ -54,7 +54,7 @@ const styles = (theme) => ({
 class TutDialog extends Component {
     state = {
         open: false,
-        oldPath: "/",
+        oldPath: "",
         newPath: "",
     };
     componentDidMount() {
@@ -79,7 +79,9 @@ class TutDialog extends Component {
     };
     handleClose = () => {
         window.history.pushState(null, null, this.state.oldPath);
-        this.setState({ open: false });
+        this.setState({
+            open: false,
+        });
         this.props.clearErrors();
     };
     render() {

@@ -123,6 +123,7 @@ export const deleteTut = (tutId) => (dispatch) => {
         .catch((err) => console.log(err));
 };
 
+// Get user data
 export const getUserData = (userHandle) => (dispatch) => {
     dispatch({ type: LOADING_DATA });
     axios
@@ -141,6 +142,7 @@ export const getUserData = (userHandle) => (dispatch) => {
         });
 };
 
+// Clear errors
 export const clearErrors = () => (dispatch) => {
     dispatch({ type: CLEAR_ERRORS });
 };

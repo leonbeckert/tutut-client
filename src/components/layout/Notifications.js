@@ -45,14 +45,12 @@ class Notifications extends Component {
 
         let notificationsIcon = <NotificationsIcon />;
         let count = notifications.filter((not) => not.read === false).length;
-        notifications &&
-            count > 0 &&
+        count > 0 &&
             (notificationsIcon = (
                 <Badge badgeContent={count} color="secondary">
                     <NotificationsIcon />
                 </Badge>
             ));
-
         let notificationsMarkup =
             notifications && notifications.length > 0 ? (
                 notifications.map((not) => {
@@ -71,7 +69,6 @@ class Notifications extends Component {
                                 style={{ marginRight: 10 }}
                             />
                         );
-
                     return (
                         <MenuItem
                             key={not.createdAt}
