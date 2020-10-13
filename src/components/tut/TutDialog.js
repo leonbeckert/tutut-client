@@ -54,6 +54,8 @@ const styles = (theme) => ({
 class TutDialog extends Component {
     state = {
         open: false,
+        oldPath: "/",
+        newPath: "",
     };
     componentDidMount() {
         if (this.props.openDialog) {
@@ -61,10 +63,22 @@ class TutDialog extends Component {
         }
     }
     handleOpen = () => {
-        this.setState({ open: true });
+        let oldPath = window.location.pathname;
+
+        const { userHandle, tutId } = this.props;
+        const newPath = `/users/${userHandle}/tut/${tutId}`;
+
+        if (oldPath === newPath) {
+            oldPath = `/users/${userHandle}`;
+        }
+
+        window.history.pushState(null, null, newPath);
+
+        this.setState({ open: true, oldPath, newPath });
         this.props.getTut(this.props.tutId);
     };
     handleClose = () => {
+        window.history.pushState(null, null, this.state.oldPath);
         this.setState({ open: false });
         this.props.clearErrors();
     };

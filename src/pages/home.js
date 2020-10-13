@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 
 import Tut from "../components/tut/Tut";
 import Profile from "../components/profile/Profile";
+import TutSkeleton from "../util/TutSkeleton";
 
 import { connect } from "react-redux";
 import { getTuts } from "../redux/actions/dataActions";
@@ -17,7 +18,7 @@ class home extends Component {
         let recentTutsMarkup = !loading ? (
             tuts.map((tut) => <Tut key={tut.tutId} tut={tut} />)
         ) : (
-            <p>Loading...</p>
+            <TutSkeleton />
         );
         return (
             <Grid container spacing={10}>

@@ -73,9 +73,9 @@ export class Tut extends Component {
                         variant="h5"
                         component={Link}
                         to={`/users/${userHandle}`}
-                        color="textPrimary"
+                        color="primary"
                     >
-                        @{userHandle}
+                        {userHandle}
                     </Typography>
                     {deleteButton}
                     <Typography variant="body2" color="textSecondary">

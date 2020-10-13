@@ -4,6 +4,8 @@ import axios from "axios";
 import Tut from "../components/tut/Tut";
 import StaticProfile from "../components/profile/StaticProfile";
 import Grid from "@material-ui/core/Grid";
+import TutSkeleton from "../util/TutSkeleton";
+import ProfileSkeleton from "../util/ProfileSkeleton";
 
 import { connect } from "react-redux";
 import { getUserData } from "../redux/actions/dataActions";
@@ -35,7 +37,7 @@ export class user extends Component {
         const { tutIdParam } = this.state;
 
         const tutsMarkup = loading ? (
-            <p>Loading data...</p>
+            <TutSkeleton />
         ) : tuts === null ? (
             <p>No tuts from this user</p>
         ) : !tutIdParam ? (
@@ -57,7 +59,7 @@ export class user extends Component {
                 </Grid>
                 <Grid item sm={4} xs={12}>
                     {this.state.profile === null ? (
-                        <p>Loading profile...</p>
+                        <ProfileSkeleton />
                     ) : (
                         <StaticProfile profile={this.state.profile} />
                     )}
